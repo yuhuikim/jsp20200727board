@@ -42,7 +42,7 @@ public class MemberDaoInsertServlet extends HttpServlet {
 			MemberDao dao = new MemberDao();
 			conn = ConnectionProvider.getConnection();
 			Random rand = new Random();
-			Member mem = new Member("randomid" + rand.nextInt(100), "멍토리", "1111", new Date());
+			Member mem = new Member("randomid" + rand.nextInt(100), "홍길동", "1111", new Date());
 			dao.insert(conn, mem);
 		} catch (Exception e) {
 			e.printStackTrace();

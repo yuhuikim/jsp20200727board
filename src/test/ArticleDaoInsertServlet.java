@@ -35,17 +35,11 @@ public class ArticleDaoInsertServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
 	 *      response)
 	 */
-	protected void doGet(HttpServletRequest request,
-			HttpServletResponse response)
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		Connection conn = null;
-		Writer writer = new Writer("jyjy", "jyjy");
-		Article article = new Article(null,
-				writer,
-				"title1",
-				new Date(),
-				new Date(),
-				0);
+		Writer writer = new Writer("seoul3", "john");
+		Article article = new Article(null, writer, "title1", new Date(), new Date(), 0);
 
 		try {
 			conn = ConnectionProvider.getConnection();
@@ -69,8 +63,7 @@ public class ArticleDaoInsertServlet extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
 	 *      response)
 	 */
-	protected void doPost(HttpServletRequest request,
-			HttpServletResponse response)
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		doGet(request, response);

@@ -48,6 +48,8 @@ public class ControllerUsingURI extends HttpServlet {
 			while (keys.hasMoreElements()) {
 				String key = keys.nextElement();
 				String className = props.getProperty(key);
+				System.out.println(key);
+				System.out.println(className);
 
 				Class<CommandHandler> clazz = (Class<CommandHandler>) Class
 						.forName(className);

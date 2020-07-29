@@ -20,29 +20,26 @@ import member.model.Member;
 @WebServlet("/MemberDaoSelectServlet")
 public class MemberDaoSelectServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
+       
+    /**
+     * @see HttpServlet#HttpServlet()
+     */
+    public MemberDaoSelectServlet() {
+        super();
+        // TODO Auto-generated constructor stub
+    }
 
 	/**
-	 * @see HttpServlet#HttpServlet()
+	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
-	public MemberDaoSelectServlet() {
-		super();
-		// TODO Auto-generated constructor stub
-	}
-
-	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
-	 *      response)
-	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
-
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		Connection conn = null;
-
+		
 		try {
 			conn = ConnectionProvider.getConnection();
 			MemberDao dao = new MemberDao();
-			Member mem = dao.selectById(conn, "randomid78");
-
+			Member mem = dao.selectById(conn, "randomid34");
+			
 			System.out.println(mem.getId());
 			System.out.println(mem.getName());
 			System.out.println(mem.getPassword());
@@ -52,14 +49,13 @@ public class MemberDaoSelectServlet extends HttpServlet {
 		} finally {
 			JdbcUtil.close(conn);
 		}
+	
 	}
 
 	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
-	 *      response)
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		doGet(request, response);
 	}

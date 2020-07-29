@@ -38,4 +38,6 @@ public class Article {
 	public int getReadCount() {
 		return readCount;
 	}
+	
+	
 }

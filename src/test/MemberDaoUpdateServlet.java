@@ -32,11 +32,10 @@ public class MemberDaoUpdateServlet extends HttpServlet {
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
-	protected void doGet(HttpServletRequest reqest, HttpServletResponse response) 
-			throws ServletException, IOException {
+	protected void doGet(HttpServletRequest reqest, HttpServletResponse response) throws ServletException, IOException {
 		
 		try (Connection conn = ConnectionProvider.getConnection();) {
-			Member member = new Member("jy", "똥준엽", "0304", new Date());
+			Member member = new Member("seoul4", "1", "3", new Date());
 			
 			MemberDao dao = new MemberDao();
 			dao.update(conn, member);
