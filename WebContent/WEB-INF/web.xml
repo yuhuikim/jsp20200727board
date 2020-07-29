@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xmlns="http://java.sun.com/xml/ns/javaee"
-	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd"
-	id="WebApp_ID" version="3.0">
+	xmlns="http://xmlns.jcp.org/xml/ns/javaee"
+	xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_4_0.xsd"
+	id="WebApp_ID" version="4.0">
 	<display-name>board</display-name>
 	<welcome-file-list>
 		<welcome-file>index.html</welcome-file>
@@ -12,19 +12,58 @@
 		<welcome-file>default.htm</welcome-file>
 		<welcome-file>default.jsp</welcome-file>
 	</welcome-file-list>
+	<listener>
+		<listener-class>jdbc.DBCPInitListener</listener-class>
+	</listener>
 
+	<listener>
+		<listener-class>util.AddContextPathListener</listener-class>
+	</listener>
+
+
+	<context-param>
+		<param-name>poolConfig</param-name>
+		<param-value>
+  		jdbcDriver=com.mysql.cj.jdbc.Driver
+  		jdbcUrl=jdbc:mysql://localhost/board?serverTimezone=Asia/Seoul
+  		dbUser=root
+  		dbPass=rootpw
+  		validationQuery=SELET 1
+  		minIdle=3
+  		maxTotal=30
+  		poolName=board
+  	</param-value>
+	</context-param>
 	<filter>
 		<filter-name>encodingFilter</filter-name>
 		<filter-class>util.CharacterEncodingFilter</filter-class>
-		<init-param>
-			<param-name>encoding</param-name>
-			<param-value>utf-8</param-value>
-		</init-param>
 	</filter>
-
 	<filter-mapping>
 		<filter-name>encodingFilter</filter-name>
 		<url-pattern>/*</url-pattern>
 	</filter-mapping>
-
+	<filter>
+		<filter-name>LoginCheckFilter</filter-name>
+		<filter-class>filter.LoginCheckFilter</filter-class>
+	</filter>
+	<filter-mapping>
+		<filter-name>LoginCheckFilter</filter-name>
+		<url-pattern>/changePwd.do</url-pattern>
+		<url-pattern>/article/write.do</url-pattern>
+	</filter-mapping>
+	<servlet>
+		<servlet-name>ControllerUsingURI</servlet-name>
+		<servlet-class>mvc.controller.ControllerUsingURI</servlet-class>
+		<init-param>
+			<param-name>configFile</param-name>
+			<param-value>
+  			/WEB-INF/commandHandlerURI.properties
+  		</param-value>
+		</init-param>
+		<load-on-startup>1</load-on-startup>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>ControllerUsingURI</servlet-name>
+		<url-pattern>*.do</url-pattern>
+	</servlet-mapping>
 </web-app>
