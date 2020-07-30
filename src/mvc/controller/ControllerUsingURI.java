@@ -52,7 +52,7 @@ public class ControllerUsingURI extends HttpServlet {
 				System.out.println(className);
 
 				Class<CommandHandler> clazz = (Class<CommandHandler>) Class
-						.forName(className);
+						.forName(className.trim());
 
 				CommandHandler comm = clazz.newInstance();
 

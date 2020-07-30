@@ -5,6 +5,7 @@ import java.util.List;
 import article.model.Article;
 
 public class ArticlePage {
+	//인스턴스 필드
 	private int total;
 	private int currentPage;
 	private List<Article> content;
@@ -16,13 +17,14 @@ public class ArticlePage {
 		this.total = total;
 		this.currentPage = currentPage;
 		this.content = content;
-		
+		//필드를 초기화하기 위한 계산 과정
 		if (total == 0) {
 			totalPages = 0;
 			startPage = 0;
 			endPage = 0;
 		} else {
 			totalPages = total / size;
+			//나누어 떨어지지 않으면 페이지를 1개 추가한다.
 			if (total % size > 0) {
 				totalPages++;
 			}
@@ -56,7 +58,7 @@ public class ArticlePage {
 		return totalPages;
 	}
 	
-	public List<Article> getContent() {
+	public List<Article> getContent() { //내용 받아온다.
 		return content;
 	}
 	
